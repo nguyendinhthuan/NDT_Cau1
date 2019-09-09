@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity {
         checkBox_Luu = (CheckBox) findViewById(R.id.checkBox_Luu);
         button_DangNhap = (Button) findViewById(R.id.button_DangNhap);
         textView_KetQua = (TextView) findViewById(R.id.textView_KetQua);
-        //button_Thoat = (Button) findViewById(R.id.button_Thoat);
+        button_Thoat = (Button) findViewById(R.id.button_Thoat);
 
         action();
-
+        thoat();
     }
 
     private void action() {
@@ -44,6 +44,32 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     textView_KetQua.setText("Chào mừng bạn đăng nhập hệ thống, thông tin của bạn không được lưu !");
                 }
+            }
+        });
+    }
+
+    private void thoat() {
+        button_Thoat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Thông báo");
+                builder.setMessage("Bạn có muốn thoát không ?");
+
+                builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.dismiss();
+                        finish();
+                    }
+                });
+                builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int which) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.create().show();
             }
         });
     }
